@@ -156,7 +156,7 @@ def profilecode(request):
     f = request.POST.get("ppic")
 
     profiletbl.objects.create(firstname=a, lastname=b, role=c, email=d, phone=e, ppic=f)
-    return redirect("/profile/")  
+    return redirect("/profile/")
 
 
 def changepasscode(request):
