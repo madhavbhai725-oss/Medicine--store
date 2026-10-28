@@ -84,7 +84,7 @@
             <h5 class="fw-bold mb-0 text-primary"><i class="fa-solid fa-folder-plus me-2"></i> Create New Medicine Category Form</h5>
             <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle" onclick="document.getElementById('addCategoryFormCard').classList.add('d-none')"><i class="fa-solid fa-xmark"></i></button>
           </div>
-          <form action="../categorycode/" method="POST">
+          <form action="/categorycode/" method="POST">
               {% csrf_token %}
             <div class="row g-3">
               <div class="col-md-3">
