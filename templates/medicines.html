@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicines Inventory - MediStore Pro</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html" class="brand-link">
+          <div class="brand-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+          <div class="sidebar-logo-text">
+            <h5 class="brand-text mb-0">MediStore <span>Pro</span></h5>
+            <small class="text-muted" style="font-size: 0.68rem;">ADMIN SAAS PANEL</small>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-content">
+        <div class="sidebar-heading">Core System</div>
+         <ul class="sidebar-menu">
+          <li class="menu-item active"><a href="../index/" class="menu-link"><i class="fa-solid fa-chart-pie menu-icon"></i><span class="menu-text">Dashboard</span></a></li>
+          <li class="menu-item"><a href="../medicines/" class="menu-link"><i class="fa-solid fa-pills menu-icon"></i><span class="menu-text">Medicines</span><span class="badge bg-primary ms-auto sidebar-badge">50+</span></a></li>
+          <li class="menu-item"><a href="../categories" class="menu-link"><i class="fa-solid fa-tags menu-icon"></i><span class="menu-text">Categories</span></a></li>
+          <li class="menu-item"><a href="../companies/" class="menu-link"><i class="fa-solid fa-building-flag menu-icon"></i><span class="menu-text">Companies</span></a></li>
+          <li class="menu-item"><a href="../suppliers/" class="menu-link"><i class="fa-solid fa-truck-field menu-icon"></i><span class="menu-text">Suppliers</span></a></li>
+          <li class="menu-item"><a href="../customers/" class="menu-link"><i class="fa-solid fa-users menu-icon"></i><span class="menu-text">Customers</span></a></li>
+        </ul>
+
+        <div class="sidebar-heading">Preferences</div>
+        <ul class="sidebar-menu">
+          <li class="menu-item"><a href="../profile/" class="menu-link"><i class="fa-solid fa-circle-user menu-icon"></i><span class="menu-text">My Profile</span></a></li>
+          <li class="menu-item"><a href="../changepassword/" class="menu-link"><i class="fa-solid fa-key menu-icon"></i><span class="menu-text">Change Password</span></a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=150&q=80" alt="Admin" class="user-avatar">
+          <div class="user-info-detail">
+            <h6 class="user-name mb-0">Dr. Rajesh Sharma</h6>
+            <span class="user-role">Super Pharmacist</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+      <!-- NAVBAR -->
+      <header class="app-navbar">
+        <div class="navbar-left">
+          <button id="sidebar-toggle-btn" class="sidebar-toggle-btn"><i class="fa-solid fa-bars-staggered"></i></button>
+          <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="table-search-input" class="search-input" placeholder="Search 50 medicines...">
+            <span class="search-shortcut">⌘K</span>
+          </div>
+        </div>
+
+        <div class="navbar-right">
+          <button id="theme-toggle-btn" class="nav-icon-btn"><i class="fa-solid fa-moon"></i></button>
+          <button id="fullscreen-btn" class="nav-icon-btn d-none d-sm-flex"><i class="fa-solid fa-expand"></i></button>
+          
+          <div class="dropdown ms-2">
+            <a href="#" data-bs-toggle="dropdown"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=150&q=80" class="avatar-sm"></a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+              <li class="px-3 py-2 border-bottom"><h6 class="mb-0 fw-bold">Dr. Rajesh Sharma</h6><small class="text-muted">rajesh@medistore.com</small></li>
+              <li><a class="dropdown-item py-2" href="profile.html"><i class="fa-solid fa-user me-2 text-primary"></i> Profile</a></li>
+              <li><a class="dropdown-item py-2 text-danger" href="login.html"><i class="fa-solid fa-right-from-bracket me-2"></i> Sign Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE BODY -->
+      <main class="page-body">
+
+        <!-- Page Header -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div>
+            <h4 class="fw-bold mb-1">Medicines Master Inventory 💊</h4>
+            <p class="text-muted small mb-0">Browse, filter, and manage 50 pharmaceutical products and stock units.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-saas-primary btn-sm" onclick="document.getElementById('addMedicineFormCard').classList.toggle('d-none')"><i class="fa-solid fa-plus me-1"></i> Add Medicine</button>
+          </div>
+        </div>
+
+        <!-- ADD MEDICINE FORM CARD (HIDDEN BY DEFAULT) -->
+        <div class="card-saas p-4 mb-4 d-none" id="addMedicineFormCard">
+          <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+            <h5 class="fw-bold mb-0 text-primary"><i class="fa-solid fa-prescription-bottle-medical me-2"></i> Add New Medicine Form</h5>
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle" onclick="document.getElementById('addMedicineFormCard').classList.add('d-none')"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <form action="../medicinescode/" method="post" >
+              {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">Medicine Brand Name</label>
+                <input type="text" name="brandname" class="form-control form-control-saas" placeholder="e.g. Paracetamol 650mg" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">Generic Name / Active Formula</label>
+                <input type="text" name="genericname" class="form-control form-control-saas" placeholder="e.g. Acetaminophen" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold">Category</label>
+                <select class="form-select form-select-saas" required name="category">
+                  <option value="Tablet">Tablet</option>
+                  <option value="Capsule">Capsule</option>
+                  <option value="Syrup">Syrup</option>
+                  <option value="Injection">Injection</option>
+                  <option value="Cream">Cream / Gel</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small fw-semibold">Pharma Company</label>
+                <select class="form-select form-select-saas" required name="pharmacompany">
+                  <option value="Sun Pharma">Sun Pharma</option>
+                  <option value="Cipla">Cipla</option>
+                  <option value="Dr. Reddy's">Dr. Reddy's</option>
+                  <option value="GSK">GSK</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small fw-semibold">Batch Number</label>
+                <input type="text" class="form-control form-control-saas" placeholder="#PCM-901" required name="batchnumber">
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small fw-semibold">Purchase Price (₹)</label>
+                <input type="number" step="0.01" class="form-control form-control-saas" placeholder="10.00" required name="purchaseprice">
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small fw-semibold">Selling Price (₹)</label>
+                <input type="number" step="0.01" class="form-control form-control-saas" placeholder="15.00" required name="sellingprice">
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small fw-semibold">Stock Qty</label>
+                <input type="number" class="form-control form-control-saas" placeholder="500" required name="Qty">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small fw-semibold">Expiry Date</label>
+                <input type="month" class="form-control form-control-saas" required name="exdate">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small fw-semibold">Stock Status</label>
+                <select class="form-select form-select-saas" required name="stockstatus">
+                  <option value="In Stock">In Stock</option>
+                  <option value="Low Stock">Low Stock</option>
+                  <option value="Out of Stock">Out of Stock</option>
+                </select>
+              </div>
+            </div>
+            <div class="mt-3 text-end">
+              <button type="submit" class="btn btn-saas-primary px-4"><i class="fa-solid fa-check me-1"></i> Save Product to Inventory</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Filter & Search Bar Card -->
+        <div class="card-saas p-3 mb-4">
+          <div class="row g-3 align-items-center">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text bg-transparent text-muted"><i class="fa-solid fa-filter"></i></span>
+                <select class="form-select form-select-saas border-start-0" id="categoryFilter">
+                  <option value="">All Categories (Tablet, Syrup, Injection...)</option>
+                  <option value="Tablet">Tablet</option>
+                  <option value="Capsule">Capsule</option>
+                  <option value="Syrup">Syrup</option>
+                  <option value="Injection">Injection</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <span class="small text-muted me-2">Showing <strong>50</strong> medicines records</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DATATABLE CARD WITH 50 REALISTIC HARDCODED MEDICINES -->
+        <div class="card-saas mb-4">
+          <div class="card-saas-body p-0">
+            <div class="table-responsive-custom">
+              <table class="table table-saas align-middle">
+                <thead>
+                  <tr> <th>#</th>
+                    <th>Medicine & Generic</th>
+                    <th>Category</th>
+                    <th>Company</th>
+                    <th>Batch</th>
+                    <th>Buy Price</th>
+                    <th>Sell Price</th>
+                    <th>Stock Qty</th>
+                    <th>Expiry Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+
+                </thead>
+                <tbody>
+                {% for x in fetchdata %}
+                  <tr>
+                  <td>{{x.id}}</td>
+                    <td><div class="d-flex align-items-center gap-2">T<div class="avatar-sm bg-primary-light text-primary avatar-text"></div><div><h6 class="mb-0 fw-semibold">{{ x.brandname }}</h6><small class="text-muted">{{ x.genericname }}</small></div></div></td>
+                    <td><span class="badge badge-soft-primary">{{ x.category }}</span></td>
+                    <td>{{ x.pharmacompany }}</td>
+                    <td><code>{{ x.batchnumber }}</code></td>
+                    <td>₹{{ x.purchaseprice }}</td>
+                    <td class="fw-bold">₹{{ x.sellingprice }}</td>
+                    <td class="fw-bold text-success">{{ x.Qty }}</td>
+                    <td>{{ x.exdate }}</td>
+                    <td><span class="badge badge-soft-success">{{ x.stockstatus }}</span></td>
+                    <td>
+                      <button class="btn-action" title="View"><i class="fa-solid fa-eye"></i></button>
+                      <button class="btn-action" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                    </td>
+                  </tr>
+
+                   {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <footer class="mt-auto py-3 px-4 bg-card border-top text-center text-md-start">
+        <span class="small text-muted">&copy; 2026 MediStore Pro. 50 Hardcoded Medicines Database.</span>
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+     <script src="{% static 'js/script.js'%}"></script>
+</body>
+</html>
